@@ -1,0 +1,19 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Démarrage de l'application -->
+    <bean id = "runner" class = "com.alhous.di.RunnerImpl"/> 
+    
+    <!-- Bean pour la récupération des nombres -->
+    <bean id = "nombreImpl" class = "com.alhous.di.dao.NombreImpl"/>
+        
+    <!-- Bean pour l'opération d'addtion -->
+    <bean id = "additionImpl" class = "com.alhous.di.metier.AdditionImpl">
+        <property name="nombre" ref="nombreImpl"  />
+    </bean> 
+   
+</beans>
