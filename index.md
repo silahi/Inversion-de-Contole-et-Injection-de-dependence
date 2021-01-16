@@ -43,11 +43,12 @@ Nous allons donc voir :
 
 Nous avons bésoin de deux nombres pour l'opération voulue(Addition, etc).
 Pour cela on a l'interface **INombre**  et la classe **NombreImpl** pour l'implémentation de l'interface.
-Puisque nous avons bésoin des données (les valeurs des deux nombres) on a donc décider de placer ces fichiers (l'interface INombre et la class NombreImpl) dans le package **dao**:
+Puisque nous avons bésoin des données (les valeurs des deux nombres) on a donc décider de placer ces fichiers (l'interface INombre et la class NombreImpl)
+dans le package **dao**:
 
 - Pour l'interface **INombre**
 
-markdown ```
+```
 package com.alhous.di.dao;
 /**
  *
@@ -67,8 +68,10 @@ public interface INombre {
 }
 ```
 
--Pour la classe **NombreImpl** : La manière d'obtenir les nombres est laissée au lecteur . Quant à nous on a initialisé des valeurs par défauts juste pour vous montrer le principe.
-markdown```
+- Pour la classe **NombreImpl** : La manière d'obtenir les nombres est laissée au lecteur .
+Quant à nous, on a initialisé des valeurs par défauts juste pour vous montrer le principe.
+
+```
 package com.alhous.di.dao;
 /**
  *
@@ -95,7 +98,8 @@ Nous avont bésoin de calculer la somme de deux nombres , pour cela nous allons 
 dans la classe **AdditionImpl**. De même la partie métier de notre application se trouve dans le package metier.
 
 - L'interface **IAddition**
-markdown``` 
+
+``` 
 package com.alhous.di.metier;
 /**
  *
@@ -112,7 +116,7 @@ public interface IAddition {
 
 - L'implémentation de l'interface
 
-markdown```
+```
 package com.alhous.di.metier;
 import com.alhous.di.dao.INombre;
 /**
@@ -143,7 +147,7 @@ ou dans le classpath. Lors du démarrage de l'application le fichier sera lu et 
 Dans cet exemple, on a nommé notre fichier **config.properties** , le fichier peut avoir n'importe qu'elle extension tant que son contenu 
 est lisible. voici le contenu de notre fichier.
 
-markdown```
+```
 nom=Calculateur Numérique
 version=1.1
 #Classe de démarrage de l'application
@@ -159,7 +163,7 @@ connaitre la bonne classe.
 
 - Interface et classe pour le démarrage
 
-markdown```
+```
 package com.alhous.di;
 /**
  *
@@ -174,7 +178,7 @@ public interface IRunner {
 ```
 
 - **Implémentation**
-markdown```
+```
 public class RunnerImpl implements IRunner {
     @Override
     public void run() {
@@ -217,7 +221,7 @@ qu'il faut pour mettre en place en place ce mécanisme. C'est pour quoi les fram
  (**un fichier .xml**) dans le classpath du projet. Si vous utilisez **maven**, il faut mettre ce fichier dans le dossier **resources**
 
  On a nommé notre fichier **config.xml**. Voici le contenu de notre fichier
- markdown``` 
+``` 
   <?xml version = "1.0" encoding = "UTF-8"?>
 <beans xmlns = "http://www.springframework.org/schema/beans"
        xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
@@ -242,7 +246,8 @@ Dans la classe **AdditionImpl** on a un attribut de type **INombre** c'est pour 
 **additionImpl**. Pour plus e détails réferez vous à la documentation de spring.
 
 Maintenant que nous avons dit à Spring les classes à instancier dynamiquement , on va voir ce qu'on va écrire dans la partie métier
-markdown``` 
+
+``` 
 public class RunnerImpl implements IRunner {
     @Override
     public void run() {
@@ -253,6 +258,7 @@ public class RunnerImpl implements IRunner {
         System.out.println(nombre.getNombre1() + " + " + nombre.getNombre2() + " = " + res);
     }
 }
+
 ``` 
 **Note** : On va seulement  passer à spring notre fichier de configuration qui se trouve dans le classpath de notre projet,
 invoquer les classes avec leur id et faire les opérations dont on a bésoin. dans la partie suivante on va voir comment diminuer
@@ -265,7 +271,8 @@ On va utiliser deux annotation en générale :
 - **@Autowire**
 
 Voici ce que l'on peut faire dans notre classe **NombreImpl** pour indiquer à spring de charger cette classe 
-markdown```
+
+```
   package com.alhous.di.annota.dao;
 import com.alhous.di.dao.INombre;
 import org.springframework.stereotype.Component;
@@ -286,13 +293,14 @@ public class NombreImpl implements INombre {
         return 15;
     }
 }
- ```
+```
+ 
  **Note** : Le nom du composant est optionnel 
 
  - Pour la classe **AdditionImpl**
 
- markdown```
- package com.alhous.di.annota.metier;
+```
+package com.alhous.di.annota.metier;
 import com.alhous.di.dao.INombre;
 import com.alhous.di.metier.IAddition;
 import javax.annotation.Resource;
@@ -318,10 +326,12 @@ public class AdditionImpl implements IAddition {
         this.nombre = nombre;
     }
 }
-  ```
+```
+
 **Note** : Ici l'annotation **@Autowire** permet d'indiquer à spring que cette attribut (ici nombre) sera injecté.
 - Voici donc ce qu'on aura dans la partie présentation
-markdown``` 
+
+``` 
 package com.alhous.di.annota;
 import com.alhous.di.IRunner;
 import com.alhous.di.dao.INombre;
@@ -351,9 +361,4 @@ Dans la méthode **getBean** je peut préciser seulement le type de class ou on 
 
 Remarquez que nous n'avons pas bésoin d'appeler la méthode le methode **setNombre** pour lui passer l'interface **INombre**; Ce mécanisme 
 est assuré par l'injection de dépendence.
-
-
-
  
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). 
