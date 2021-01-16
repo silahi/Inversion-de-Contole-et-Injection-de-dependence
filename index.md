@@ -1,37 +1,37 @@
-## Welcome to GitHub Pages
+# Principe d'Inversion de contrôle et d'Injection de dépendence 
 
-You can use the [editor on GitHub](https://github.com/silahi/Inversion-de-Controle-et-Injection-de-dependence/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Objectif 
+Créer une application qui utilise l'inversion de contrôle et L'injection de dépendence par  Programmation pure (Sans Framworks) 
+et en utilisant un Framwork [Spring] (Par fichier de config et par annotation)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- Utilisation d'un couplage faible
+- Programmation par interface
+- L'application doit être fermée à la modification et être uverte à l'extension
 
-### Markdown
+## Description
+L'application consite à réaliser un petit calculateur numérique qui permet de faire les 4 opérations suivantes : 
+- Addition
+- Soustraction
+- Multiplication
+- Division
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Note : Nous avons implémenté seulement la fonction d'addition dans ce tutoriel. les 3 autres opérations restantes sont laisées aux lecteurs
+Vous pouvez cloner le projet et implémenter les autres fonctionnalités. Vous n'aurez donc pas bésoin de modifier le code existant , Vous 
+aurez juste à ajouter les fonctionnalités que vous voulez.
 
-```markdown
-Syntax highlighted code block
+ 
+### Description des classes et Injerfaces
+- **INombre** : Interface qui contient deux methodes pour l'initialisation des deux nombres qui seront utilisés pour faire l'opération
+- **NombreImpl** : Classe qui implémente l'interface INombre 
+- **IRunner** : Interface qui contient une methode run pour le démarrage de l'application
+- **RunnerImpl**: Implémentation de l'interface IRunner
+- **IAddition** : Interface qui contient la methode somme pour l'opération d'addition
+- **AdditionImpl** : Implémentation de l'interface IAddition
 
-# Header 1
-## Header 2
-### Header 3
+## Plan 
+Nous allons voir en prémier lieu
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+ 
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/silahi/Inversion-de-Controle-et-Injection-de-dependence/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). 
